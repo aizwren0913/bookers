@@ -13,6 +13,14 @@
     
     
   <body>
+    <% if @book.errors.any? %>
+  <%= @book.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
     
     <h1>Editing Book</h1>
   <%= form_with model: @book, url: update_book_path(@book.id), method: :patch do |f| %>
@@ -28,6 +36,7 @@
   <%= f.submit 'Update Book' %>
   
 <% end %>
-
+<td><%= link_to "Show", "/books/#{@book.id}" %></td>
+<td><%= link_to "Back", books_path %></td>
 
 </body></html>
